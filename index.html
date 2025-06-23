@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mi Huella Digital: Portafolio y Blog</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
+    <style>
+      /* Estilos Globales */
+      body {
+        font-family: "Open Sans", sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        color: #333;
+        scroll-behavior: smooth; /* Desplazamiento suave para enlaces ancla */
+      }
+
+      /* Títulos */
+      h1,
+      h2 {
+        font-family: "Montserrat", sans-serif;
+        color: #2c3e50; /* Un azul/gris ligeramente más oscuro para mejor contraste */
+      }
+
+      /* Sección del Encabezado */
+      header {
+        background: linear-gradient(
+          to right,
+          #007bff,
+          #bbdefb
+        ); /* Color final del gradiente ajustado para mejor mezcla */
+        color: white;
+        padding: 2rem 0;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil añadida */
+      }
+
+      /* Barra de Navegación */
+      nav {
+        background-color: #333;
+        color: white;
+        padding: 1rem 0;
+        text-align: center;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3); /* Sombra ligeramente más fuerte para efecto sticky */
+      }
+
+      nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      nav ul li {
+        margin: 0 15px;
+      }
+
+      nav ul li a {
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        padding: 0.5rem 1rem;
+        transition: background-color 0.3s ease, color 0.3s ease,
+          transform 0.2s ease; /* Añadida transformación para efecto hover */
+        border-radius: 5px; /* Añadido border-radius para el estado inicial */
+      }
+
+      nav ul li a:hover {
+        background-color: #0056b3; /* Azul más oscuro al pasar el ratón */
+        color: white;
+        transform: translateY(
+          -2px
+        ); /* Ligero levantamiento al pasar el ratón */
+      }
+
+      /* Estilos Generales de las Secciones */
+      section {
+        padding: 60px 20px;
+        margin: 0 auto;
+        max-width: 1200px;
+        background-color: white;
+        border-bottom: 1px solid #eee;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05); /* Sombra suave para secciones */
+        margin-bottom: 20px; /* Espacio entre secciones */
+      }
+
+      /* Fondos de Secciones Específicas */
+      #home {
+        text-align: center;
+        background: linear-gradient(
+          to bottom right,
+          #e0f7fa,
+          #b2ebf2
+        ); /* Gradiente más ligero y sutil */
+        padding: 100px 20px;
+      }
+
+      #about {
+        background-color: #fcfcfc; /* Blanco ligeramente más claro */
+      }
+
+      #gallery {
+        background-color: #e8f5e9; /* Tinte verde claro */
+      }
+
+      #contact {
+        background-color: #fcfcfc;
+      }
+
+      /* Botones */
+      .btn {
+        background-color: #007bff;
+        color: white;
+        padding: 12px 25px; /* Padding ligeramente mayor */
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1.1rem; /* Fuente ligeramente mayor */
+        transition: background-color 0.3s ease, transform 0.2s ease,
+          box-shadow 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+        margin-top: 20px; /* Espacio encima del botón */
+      }
+
+      .btn:hover {
+        background-color: #0056b3;
+        transform: translateY(-3px); /* Levantamiento más pronunciado */
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25); /* Sombra más fuerte */
+      }
+
+      /* Sección de Galería */
+      .gallery-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 25px; /* Espacio aumentado para mejor separación */
+        margin-top: 40px; /* Más espacio desde el título */
+      }
+
+      .gallery-card {
+        background-color: white;
+        border-radius: 10px; /* Esquinas ligeramente más redondeadas */
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Sombra más fuerte y suave */
+        overflow: hidden;
+        width: 320px; /* Tarjetas ligeramente más anchas */
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        padding-bottom: 20px;
+      }
+
+      .gallery-card:hover {
+        transform: translateY(
+          -8px
+        ); /* Levantamiento más pronunciado al pasar el ratón */
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Sombra aún más fuerte al pasar el ratón */
+      }
+
+      .gallery-card img {
+        width: 100%;
+        height: 220px; /* Imágenes ligeramente más altas */
+        object-fit: cover;
+        display: block;
+      }
+
+      .gallery-card h3 {
+        margin: 20px 0 10px; /* Márgenes ajustados */
+        color: #007bff;
+      }
+
+      .gallery-card p {
+        padding: 0 20px; /* Padding aumentado */
+        font-size: 1rem; /* Fuente ligeramente mayor */
+        line-height: 1.7; /* Altura de línea aumentada para legibilidad */
+      }
+
+      /* Formulario de Contacto */
+      .contact-form {
+        max-width: 650px; /* Formulario ligeramente más ancho */
+        margin: 30px auto; /* Más espacio desde el título */
+        padding: 30px; /* Más padding dentro del formulario */
+        border: 1px solid #e0e0e0; /* Borde más claro */
+        border-radius: 10px; /* Esquinas más redondeadas */
+        background-color: white;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08); /* Sombra más suave */
+      }
+
+      .contact-form label {
+        display: block;
+        margin-bottom: 10px; /* Más espacio debajo de las etiquetas */
+        font-weight: bold;
+        color: #555;
+      }
+
+      .contact-form input[type="text"],
+      .contact-form input[type="email"],
+      .contact-form textarea {
+        width: calc(100% - 22px); /* Ancho ajustado para padding/borde */
+        padding: 12px; /* Más padding */
+        margin-bottom: 25px; /* Más espacio debajo de los inputs */
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 1rem;
+      }
+
+      .contact-form textarea {
+        resize: vertical;
+        min-height: 120px; /* Altura del área de texto mayor */
+      }
+
+      .contact-form button[type="submit"] {
+        width: 100%;
+        padding: 15px; /* Botón más grande */
+        background-color: #28a745; /* Botón de enviar verde */
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1.2rem; /* Fuente más grande */
+        transition: background-color 0.3s ease, transform 0.2s ease,
+          box-shadow 0.3s ease;
+      }
+
+      .contact-form button[type="submit"]:hover {
+        background-color: #218838;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Pie de página */
+      footer {
+        background-color: #2c3e50; /* Pie de página más oscuro para mejor contraste */
+        color: white;
+        text-align: center;
+        padding: 2.5rem 0; /* Más padding */
+        margin-top: 60px; /* Más espacio desde la última sección */
+        font-size: 0.95rem;
+      }
+
+      .social-links {
+        margin-top: 15px; /* Espacio encima de los enlaces sociales */
+      }
+
+      .social-links a {
+        color: white;
+        margin: 0 12px; /* Más espacio entre iconos */
+        font-size: 1.8rem; /* Iconos más grandes */
+        text-decoration: none;
+        transition: color 0.3s ease, transform 0.2s ease;
+      }
+
+      .social-links a:hover {
+        color: #007bff;
+        transform: scale(
+          1.1
+        ); /* Ligeramente más grandes los iconos al pasar el ratón */
+      }
+
+      /* Diseño Responsivo */
+      @media (max-width: 768px) {
+        nav ul {
+          flex-direction: column;
+        }
+
+        nav ul li {
+          margin: 10px 0;
+        }
+
+        section {
+          padding: 40px 15px;
+        }
+
+        .gallery-card {
+          width: 85%; /* Ajustar ancho para pantallas más pequeñas */
+        }
+
+        .contact-form {
+          padding: 20px;
+        }
+
+        .contact-form input[type="text"],
+        .contact-form input[type="email"],
+        .contact-form textarea {
+          width: calc(100% - 20px); /* Ajustando para padding en móvil */
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Mi Huella Digital</h1>
+      <p>Un Portafolio y Blog Personal</p>
+    </header>
+
+    <nav>
+      <ul>
+        <li><a href="#home">Inicio</a></li>
+        <li><a href="#about">Sobre Mí</a></li>
+        <li><a href="#gallery">Proyectos</a></li>
+        <li><a href="#contact">Contacto</a></li>
+      </ul>
+    </nav>
+
+    <main>
+      <section id="home">
+        <h2>¡Hola, bienvenido a mi sitio!</h2>
+        <p>Soy Daniel, amante de los festivales 🎶.</p>
+        <button class="btn" id="welcomeBtn">
+          ¡Presiona aquí para un saludo!
+        </button>
+      </section>
+
+      <section id="about">
+        <h2>Sobre Mí</h2>
+        <p>
+          ¡Hola! Soy Daniel Barreras Frayre, un estudiante de la carrera de
+          Actuaría. Me gusta viajar, aprender idiomas, la música y conocer sobre
+          autos.
+        </p>
+        <p>
+          Siempre estoy buscando aprender cosas nuevas y enfrentar desafíos
+          creativos. Me apasiona la música electrónica y explorar nuevas
+          culturas.
+        </p>
+        <button class="btn" id="funFactBtn">Mostrar un dato curioso</button>
+        <div id="funFactContainer" style="margin-top: 20px"></div>
+      </section>
+
+      <section id="gallery">
+        <h2>Mis Proyectos</h2>
+        <div class="gallery-container">
+          <div class="gallery-card">
+            <img
+              src="https://images.unsplash.com/photo-1577045629710-8e0bd30c1a03?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NTIyMjl8MHwxfHNlYXJjaHwxfHx0b21vcnJvd2xhbmR8ZW58MHx8fHwxNzE4OTY3NjcwfDA&ixlib=rb-4.0.3&q=80&w=1080"
+              alt="Imagen de Tomorrowland"
+            />
+            <h3>TOMORROWLAND 2024</h3>
+            <p>
+              En 2024 estudié y trabajé al mismo tiempo para poder pagar un
+              viaje a Tomorrowland Bélgica. Fueron días de mucha presión,
+              durmiendo 4 o 5 horas y comiendo una vez al día.
+            </p>
+          </div>
+          <div class="gallery-card">
+            <img
+              src="https://images.unsplash.com/photo-1583339793403-3d9b001b6008?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="Imagen de Creación de Página Web con IA"
+            />
+            <h3>Crear una página web mediante la IA</h3>
+            <p>
+              El objetivo de este proyecto final es construir un sitio web
+              personal completo desde cero, evaluando la comprensión del código.
+              Integra HTML semántico, JavaScript interactivo y diseños modernos
+              con CSS.
+            </p>
+          </div>
+          <div class="gallery-card">
+            <img
+              src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              alt="Imagen de Blog de Viajes a Festivales"
+            />
+            <h3>Blog de Viajes a Festivales de Música Electrónica</h3>
+            <p>
+              Un espacio donde comparto mis experiencias y consejos sobre viajar
+              a los festivales de música electrónica más grandes del mundo.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <h2>Contáctame</h2>
+        <p>
+          ¿Listo para explorar el mundo de los festivales? ¡Déjame un mensaje y
+          te contaré sobre mis próximas aventuras!.
+        </p>
+        <form id="contactForm" class="contact-form">
+          <label for="name">Nombre:</label>
+          <input type="text" id="name" name="name" required />
+
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required />
+
+          <label for="message">Mensaje:</label>
+          <textarea id="message" name="message" rows="6" required></textarea>
+
+          <button type="submit">Enviar Mensaje</button>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 Daniel Barreras Frayre. Todos los derechos reservados.</p>
+      <div class="social-links">
+        <a
+          href="https://www.instagram.com/daniel.frayre.33/"
+          target="_blank"
+          aria-label="Instagram"
+          ><i class="fab fa-instagram"></i
+        ></a>
+        <a
+          href="https://www.facebook.com/daniel.frayre.33"
+          target="_blank"
+          aria-label="Facebook"
+          ><i class="fab fa-facebook"></i
+        ></a>
+        <a href="tel:+525534610750" aria-label="Teléfono"
+          ><i class="fas fa-phone"></i
+        ></a>
+      </div>
+    </footer>
+
+    <script>
+      // Desplazamiento suave para enlaces de navegación
+      document.querySelectorAll("nav ul li a").forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault(); // Evita el salto instantáneo por defecto del enlace
+
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth", // Habilita el desplazamiento suave
+          });
+        });
+      });
+
+      // Interacción del botón de Bienvenida
+      const welcomeBtn = document.getElementById("welcomeBtn");
+      if (welcomeBtn) {
+        welcomeBtn.addEventListener("click", () => {
+          alert(
+            "¡Hola, bienvenido a mi sitio! Soy Daniel, amante de los festivales 🎶. Espero que disfrutes tu visita."
+          );
+        });
+      }
+
+      // Interacción del botón de Dato Curioso
+      const funFactBtn = document.getElementById("funFactBtn");
+      const funFactContainer = document.getElementById("funFactContainer");
+      let factDisplayed = false;
+
+      if (funFactBtn && funFactContainer) {
+        funFactBtn.addEventListener("click", () => {
+          if (!factDisplayed) {
+            const newParagraph = document.createElement("p");
+            newParagraph.textContent =
+              "Dato Curioso: Cuando tenía 9 años me fracturé el codo, me tuvieron que operar y me pusieron dos clavos. Actualmente la cicatriz tiene forma de una carita feliz.";
+            newParagraph.style.fontStyle = "italic";
+            newParagraph.style.color = "#007bff";
+            newParagraph.style.fontWeight = "600"; // Añadido negrita para énfasis
+            funFactContainer.appendChild(newParagraph);
+            factDisplayed = true;
+            funFactBtn.textContent = "¡Dato curioso mostrado!";
+            funFactBtn.disabled = true; // Deshabilita el botón una vez que se muestra el dato
+            funFactBtn.style.backgroundColor = "#6c757d"; // Cambia el color cuando está deshabilitado
+            funFactBtn.style.cursor = "not-allowed"; // Indica que no es clickeable
+          }
+        });
+      }
+
+      // Validación del Formulario de Contacto
+      const contactForm = document.getElementById("contactForm");
+      if (contactForm) {
+        contactForm.addEventListener("submit", (event) => {
+          event.preventDefault(); // Evita el envío de formulario por defecto
+
+          const nameInput = document.getElementById("name");
+          const emailInput = document.getElementById("email");
+          const messageInput = document.getElementById("message");
+
+          // Recorta los espacios en blanco de los valores de entrada
+          const nameValue = nameInput.value.trim();
+          const emailValue = emailInput.value.trim();
+          const messageValue = messageInput.value.trim();
+
+          if (nameValue === "") {
+            alert("Por favor, ingresa tu nombre.");
+            nameInput.focus();
+            return;
+          }
+
+          if (emailValue === "") {
+            alert("Por favor, ingresa tu dirección de correo electrónico.");
+            emailInput.focus();
+            return;
+          }
+
+          // Validación básica de email con expresión regular
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(emailValue)) {
+            alert(
+              "Por favor, ingresa una dirección de correo electrónico válida."
+            );
+            emailInput.focus();
+            return;
+          }
+
+          if (messageValue === "") {
+            alert("Por favor, escribe tu mensaje.");
+            messageInput.focus();
+            return;
+          }
+
+          // Si todas las validaciones pasan
+          alert(
+            "¡Gracias por tu mensaje, " +
+              nameValue +
+              "! Nos pondremos en contacto contigo pronto."
+          );
+          contactForm.reset(); // Limpia los campos del formulario
+        });
+      }
+    </script>
+  </body>
+</html>
